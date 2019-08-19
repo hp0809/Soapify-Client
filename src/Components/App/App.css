@@ -1,0 +1,97 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.App {
+    height: 100vh;
+    padding-bottom: 20px;
+    max-width: 100%;
+  
+    margin: 0 auto;
+  }
+
+  html { 
+    background: url("./soapify-bg.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+.App_main {
+  
+  margin-top: 10px;
+  padding-bottom: 40px;
+}
+
+button {
+  border-radius: 10px;
+  background-color: white;
+  padding: 15px 32px;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.App_main h1 {
+  font-size: 50px;
+}
+.App_main h2 {
+  font-size: 30px;
+}
+
+.App_main button a:visited {
+  color: black;
+}
+
+form input {
+  border-radius: 30px;
+  height: 40px;
+  margin:20px;
+  width: 180px;
+  padding: 12px 20px
+}
+
+
+
+form {
+  margin: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.75); 
+  border-radius: 10px;
+}
+
+.SoapCalcForm input {  
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
+  margin: 4px;
+}
+
+.SoapCalcForm p {
+  padding-top: 10px;
+  color: black;
+  text-decoration: underline ;
+}
+
+.SoapCalcForm label {
+  font-size: 16px;
+  display: inline-flex;
+  width: 120px;
+}
+.checkbox {
+  width: 15px;
+  height: 15px;
+  padding: 5px;
+  
+}
