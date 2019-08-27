@@ -11,6 +11,11 @@ ul {
         height: 35px;
         width:100%;
     }
+    .Header_logged-in {
+      float: right;
+      padding: 10px;
+    }
+    
     ul {
         list-style-type: none;
         margin: 0;

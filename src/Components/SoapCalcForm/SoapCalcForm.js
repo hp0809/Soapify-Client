@@ -3,37 +3,15 @@ import { Button} from '../Utils/Utils'
 
 
 
-export default class RegistrationForm extends Component {
+export default class SoapCalcForm extends Component {
   static defaultProps = {
     onSubmitSuccess: () => {}
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      option: false,
-    };
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
-
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-    
-        this.setState({
-          [name]: value
-        })
-      }
-
+  
   handleSubmit = ev => {
       ev.preventDefault()
-      const { water, oils } = ev.target
       
-      water.value = ''
-      oils.value = ''
-      this.props.onSubmitSuccess()
   }
 
   render() {
@@ -43,103 +21,102 @@ export default class RegistrationForm extends Component {
         onSubmit={this.handleSubmit}
         >
 
-        <p>Amount of Yield (in ml):</p>
-        <input type="number" name="yield" placeholder="1000"/>ml<br/>
+        <p>Amount of Yield (the size of your container):</p>
+        <input type="number" name="soapYield" placeholder="1000"/>ml<br/>
         <p>Total amount of Oil (in grams):</p>
-        <input tye="number" name="oilAmount" />g <br/>
+        <input type="number" name="oilAmount" />g <br/>
 
-        <p>SELECT YOUR HARD OIL(S):</p>
+        <p>SELECT YOUR PERCENTAGE OF HARD OIL(S):</p>
         <label htmlFor='palmOil'>
           <input
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+            
+             />
               Palm Oil
         </label>
         <label htmlFor='coconutOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Coconut Oil
         </label>
         <label htmlFor='animalLard'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Animal Lard
         </label>
         <label htmlFor='sheaButter'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Shea Butter
         </label>
         <label htmlFor='tallow'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage'
+            name='oil'
+            type='number'             
+             />
               Tallow
         </label>
 
-        <p>SELECT YOUR SOFT OIL(S)</p>
+        <p>SELECT YOUR PERCENTAGE OF SOFT OIL(S)</p>
 
         <label htmlFor='almondOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Almond Oil
         </label>
         <label htmlFor='oliveOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Olive Oil
         </label>
         <label htmlFor='arganOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Argan Oil
         </label>
         <label htmlFor='avocadoOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Avocado Oil
         </label>
         <label htmlFor='castorOil'>
           <input 
-            className='checkbox'
-            name='option'
-            type='checkbox'
-            checked={this.state.checked}
-            onChange={this.handleInputChange}/>
+            className='percentage' 
+            name='oil'
+            type='number'
+             
+             />
               Castor Oil
         </label>
         <br/>
@@ -158,9 +135,6 @@ export default class RegistrationForm extends Component {
         <p>Caustic Soda needed (g):</p>
         <input type="number" name="causticSoda"/>
         <br/>
-        <Button type='submit'>
-            Save this soap
-        </Button>
       </form>
     )
   }

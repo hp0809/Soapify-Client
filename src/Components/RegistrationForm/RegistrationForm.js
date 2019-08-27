@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Input, Required } from '../Utils/Utils'
+import AuthApiService from '../../services/soapify-api-service'
+
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
@@ -10,16 +12,29 @@ export default class RegistrationForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
-    const { full_name, nick_name, user_name, password } = ev.target
+    const { email, nick_name, user_name, password } = ev.target
 
     console.log('registration form submitted')
-    console.log({ full_name, nick_name, user_name, password })
+    console.log({ email, nick_name, user_name, password })
 
-    full_name.value = ''
-    nick_name.value = ''
-    user_name.value = ''
-    password.value = ''
-    this.props.onRegistrationSuccess()
+    this.setState({ error: null})
+    AuthApiService.postUser({
+      user_name: user_name.value,
+      password: password.value,
+      email: email.value,
+      nickname: nick_name.value,
+    })
+      .then(user => {
+        email.value = ''
+        nick_name.value = ''
+        user_name.value = ''
+        password.value = ''
+        this.props.onRegistrationSuccess()
+      })
+      .catch(res => {
+        this.setState({error: res.error})
+      })
+    
   }
 
   render() {
@@ -31,17 +46,6 @@ export default class RegistrationForm extends Component {
       >
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
-        </div>
-        <div className='full_name'>
-          <label htmlFor='RegistrationForm_full_name'>
-            Full name <Required />
-          </label>
-          <Input
-            name='full_name'
-            type='text'
-            required
-            id='RegistrationForm_full_name'>
-          </Input>
         </div>
         <div className='user_name'>
           <label htmlFor='RegistrationForm_user_name'>
@@ -65,6 +69,17 @@ export default class RegistrationForm extends Component {
             id='RegistrationForm_password'>
           </Input>
         </div>
+        <div className='email'>
+          <label htmlFor='RegistrationForm_email'>
+            Email <Required />
+          </label>
+          <Input
+            name='email'
+            type='email'
+            required
+            id='RegistrationForm_email'>
+          </Input>
+        </div>
         <div className='nick_name'>
           <label htmlFor='RegistrationForm_nick_name'>
             Nickname
@@ -75,7 +90,8 @@ export default class RegistrationForm extends Component {
             required
             id='RegistrationForm_nick_name'>
           </Input>
-        </div>
+        </div>       
+        
         <Button type='submit'>
           Register
         </Button>
