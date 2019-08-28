@@ -87,9 +87,10 @@ class App extends Component {
       user_soaps: this.state.user_soaps,
       addSoap: this.handleAddSoap,
       deleteSoap: this.handleDeleteSoap,
-      setUserInfo: this.handleSetUserInfo
+      setUserInfo: this.handleSetUserInfo,
+      userObject: this.state.userObject
     }
-    
+
     return (
       <APIContext.Provider value={value}>
         <div className='App'>

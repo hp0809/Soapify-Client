@@ -8,9 +8,11 @@ import SoapifyApiService from '../../services/soapify-api-service'
 export default class LandingPage extends Component {
 
     static contextType = APIContext;
+    
+    
 
     render() {
-        const {user_soaps} = this.context
+        const {user_soaps = []} = this.context
         return(
             <Section className='UserPage'>
                 <h1> Welcome nickname || user_name</h1>

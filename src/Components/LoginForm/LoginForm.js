@@ -21,11 +21,12 @@ export default class LoginForm extends Component {
       user_name: user_name.value,
       password: password.value,
     })
-      .then(res => {
-        user_name.value = ''
-        password.value = ''
-        this.props.onLoginSuccess()
-      })
+    .then(res => {
+      user_name.value = ''
+      password.value = ''
+      this.props.onLoginSuccess();
+      this.context.setUserInfo();
+    })
       .catch(res => {
         this.setState({ error: res.error })
       })

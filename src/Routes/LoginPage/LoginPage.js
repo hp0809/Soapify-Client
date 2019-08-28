@@ -20,12 +20,16 @@ export default class LoginPage extends Component {
   render() {
     return (
       <APIContext.Consumer>
-      <Section className='LoginPage'>
-        <h2>Login</h2>
-        <LoginForm
-          onLoginSuccess={this.handleLoginSuccess}
-        />
-      </Section>
+        {value => {
+          console.log(value);
+          return <Section className='LoginPage'>
+                  <h2>Login</h2>
+                  <LoginForm
+                    onLoginSuccess={this.handleLoginSuccess}
+                  />
+                </Section>
+        }}
+        
       </APIContext.Consumer>
     )
   }
