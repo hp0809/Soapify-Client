@@ -15,7 +15,6 @@ export default class RegistrationForm extends Component {
     const { email, nick_name, user_name, password } = ev.target
 
     console.log('registration form submitted')
-    console.log({ email, nick_name, user_name, password })
 
     this.setState({ error: null})
     AuthApiService.postUser({

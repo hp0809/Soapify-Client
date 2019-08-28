@@ -2,23 +2,19 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import IdleService from '../../services/idle-service'
-import APIContext from '../../APIContext'
 import './Header.css'
 
 
 export default class Header extends Component {
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
-
+    this.setState({error: null})
   }
 
-  static contextType = APIContext;
-
   renderLogoutLink() {
-    const soapify_users = this.context
-    console.log(soapify_users)
     return (
       <div className='Header_logged-in'>
         <Link
@@ -27,7 +23,7 @@ export default class Header extends Component {
           Logout
         </Link>
         <Link 
-          to={`/user/${soapify_users.id}`}>
+          to={`/user/userPage`}>
           Your Page
             </Link>
       </div>
@@ -70,3 +66,4 @@ export default class Header extends Component {
     )
   }
 }
+

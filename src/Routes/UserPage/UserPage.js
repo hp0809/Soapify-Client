@@ -12,6 +12,7 @@ export default class LandingPage extends Component {
     
 
     render() {
+        console.log(this.context.soapify_users)
         const {user_soaps = []} = this.context
         return(
             <Section className='UserPage'>
@@ -34,7 +35,7 @@ function ListSoaps({user_soaps =[]}) {
         <ul>
             {user_soaps.map(soap =>
                 <li key={soap.id} value={soap.id}>
-                    <Link to={'/:userSoapsId'}>
+                    <Link to={`/customSoap${soap.id}`}>
                         Hello
                         {soap.name}
                     </Link>

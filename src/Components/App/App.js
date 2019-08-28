@@ -36,6 +36,8 @@ class App extends Component {
     return { hasError: true}
   }
 
+  
+
   componentDidMount() {
     IdleService.setIdleCallback(this.logoutFromIdle)
 
