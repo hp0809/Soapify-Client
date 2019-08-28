@@ -17,7 +17,8 @@ export default class Header extends Component {
   static contextType = APIContext;
 
   renderLogoutLink() {
-   const {soapify_users} = this.context
+    const soapify_users = this.context
+    console.log(soapify_users)
     return (
       <div className='Header_logged-in'>
         <Link
@@ -26,7 +27,7 @@ export default class Header extends Component {
           Logout
         </Link>
         <Link 
-          to={`/user/${soapify_users.id}`} activeClassName="active" >
+          to={`/user/${soapify_users.id}`}>
           Your Page
             </Link>
       </div>

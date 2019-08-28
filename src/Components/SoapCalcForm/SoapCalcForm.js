@@ -4,27 +4,39 @@ import { Button} from '../Utils/Utils'
 
 
 export default class SoapCalcForm extends Component {
-  static defaultProps = {
-    onSubmitSuccess: () => {}
-  }
-
   
   handleSubmit = ev => {
       ev.preventDefault()
       
   }
 
+  handleAmountOfOil = ev => {
+    
+    const totalSoapYield = document.getElementById("soapYield")
+    const percentOfOil = document.getElementById('oil')
+    const weightOfOils = totalSoapYield * (percentOfOil % 100)
+
+    return weightOfOils
+  }
+
+
+  
+
   render() {
+    
+
     return (
       <form
         className='SoapCalcForm'
-        onSubmit={this.handleSubmit}
+        onSubmit={this.handleAmountOfOil()}
         >
 
         <p>Amount of Yield (the size of your container):</p>
-        <input type="number" name="soapYield" placeholder="1000"/>ml<br/>
+        <input type="number" name="soapYield" id="soapYield" placeholder="1000" value="1000"/>ml<br/>
         <p>Total amount of Oil (in grams):</p>
-        <input type="number" name="oilAmount" />g <br/>
+        <input type="number" name="oilAmount" readOnly defaultValue={this.handleAmountOfOil} />
+        
+        <br/>
 
         <p>SELECT YOUR PERCENTAGE OF HARD OIL(S):</p>
         <label htmlFor='palmOil'>
@@ -32,6 +44,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
             
              />
               Palm Oil
@@ -41,6 +54,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Coconut Oil
@@ -50,6 +64,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Animal Lard
@@ -59,6 +74,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Shea Butter
@@ -67,7 +83,8 @@ export default class SoapCalcForm extends Component {
           <input 
             className='percentage'
             name='oil'
-            type='number'             
+            type='number' 
+            id='oil'            
              />
               Tallow
         </label>
@@ -79,6 +96,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Almond Oil
@@ -88,6 +106,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Olive Oil
@@ -97,6 +116,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Argan Oil
@@ -106,6 +126,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Avocado Oil
@@ -115,6 +136,7 @@ export default class SoapCalcForm extends Component {
             className='percentage' 
             name='oil'
             type='number'
+            id='oil'
              
              />
               Castor Oil
@@ -129,11 +151,15 @@ export default class SoapCalcForm extends Component {
         <br/>
         
         <p>Water:</p>
-        <input type="number" name="waterAmount"/> 
+        <input type="number" name="waterAmount" readOnly>
+        
+        </input>
         <br/>
+        <p>Total weight of Oils:</p>
+        <input type="number" name="totalOil" readOnly defaultValue={this.handleAmountOfOil}/>
 
         <p>Caustic Soda needed (g):</p>
-        <input type="number" name="causticSoda"/>
+        <input type="number" name="causticSoda" readOnly/>
         <br/>
       </form>
     )

@@ -5,4 +5,12 @@ export default React.createContext({
   user_soaps: [],
   addSoap: () => {},
   deleteSoap: () => {},
+  setUserInfo: () => {},
+  userObject: {
+    userId: '',
+    user_name: '',
+    nickname: '',
+    email: '',
+    date_created: ''
+  }
 })

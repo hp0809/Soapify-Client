@@ -21,6 +21,13 @@ class App extends Component {
   state = { 
     soapify_users: [],
     user_soaps: [],
+    userObject: {
+      userId: '',
+      user_name: '',
+      nickname: '',
+      email: '',
+      date_created: ''
+    },
     hasError: false
    };
 
@@ -67,15 +74,22 @@ class App extends Component {
     })
   }
 
+  handleSetUserInfo = userInfo => { 
+    this.setState({ 
+      userInfo: userInfo
+    })
+  }
+
 
   render() {
     const value = {
       soapify_users: this.state.soapify_users,
       user_soaps: this.state.user_soaps,
       addSoap: this.handleAddSoap,
-      deleteSoap: this.handleDeleteSoap
-
+      deleteSoap: this.handleDeleteSoap,
+      setUserInfo: this.handleSetUserInfo
     }
+    
     return (
       <APIContext.Provider value={value}>
         <div className='App'>

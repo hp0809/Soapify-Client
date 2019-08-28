@@ -15,6 +15,10 @@ export default class SoapCalcPage extends Component {
       ]
     })
   }
+
+  onSubmitSuccess = () => {
+    
+  }
   
 
   render() {

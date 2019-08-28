@@ -15,7 +15,7 @@ export default class SaveSoapForm extends Component {
     const newSoap = {
       name: e.target['name'].value,
       text: e.target['text'].value,
-      userId: this.context.user.id,
+      userId: this.context.soapify_users.id,
       modified: new Date(),
     }
 
@@ -24,7 +24,9 @@ export default class SaveSoapForm extends Component {
       .then(() => {
         text.value = ''
       })
-      .catch(this.context.setError)
+      .catch(error => {
+        console.error({error})
+      })
   }
 
   render() {

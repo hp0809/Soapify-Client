@@ -7,27 +7,19 @@ import SoapifyApiService from '../../services/soapify-api-service'
 
 export default class LandingPage extends Component {
 
-    static defaultProps = {
-        match: {
-          params: {}
-        }
-      }
-
     static contextType = APIContext;
 
     render() {
-        const {soapify_users =[], users_soaps=[]} = this.context
-        const userId = this.props.params
-        
+        const {user_soaps} = this.context
         return(
             <Section className='UserPage'>
                 <h1> Welcome nickname || user_name</h1>
                     <div className="userInfo">
-                    Username: {userId}
+                    Username: 
                     user_name
                     User since: date_created
                     Custom soaps: 
-                    <ListSoaps />
+                    <ListSoaps soaps={user_soaps} />
                     </div>       
 
             </Section>
