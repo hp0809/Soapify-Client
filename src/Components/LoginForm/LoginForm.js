@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AuthApiService from '../../services/auth-api-service'
 import { Button, Input } from '../Utils/Utils'
-import APIContext from '../../APIContext'
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -9,8 +8,6 @@ export default class LoginForm extends Component {
   }
 
   state = { error: null }
-
-  static contextType = APIContext;
 
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()

@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
 import IdleService from '../../services/idle-service'
 import './Header.css'
+import UserService from '../../services/user-service';
 
 
 export default class Header extends Component {
-
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
+    UserService.clearUserInfo()
     TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
     this.setState({error: null})
   }
 
   renderLogoutLink() {
+    const userInfo = window.localStorage.userInfo
+    const user = JSON.parse(userInfo)
     return (
       <div className='Header_logged-in'>
         <Link
@@ -23,7 +26,7 @@ export default class Header extends Component {
           Logout
         </Link>
         <Link 
-          to={`/user/userPage`}>
+          to={`/user/${user.userId}`}>
           Your Page
             </Link>
       </div>

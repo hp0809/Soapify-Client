@@ -86,7 +86,6 @@ export default class RegistrationForm extends Component {
           <Input
             name='nick_name'
             type='text'
-            required
             id='RegistrationForm_nick_name'>
           </Input>
         </div>       
