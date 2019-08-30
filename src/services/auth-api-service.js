@@ -22,7 +22,6 @@ const AuthApiService = {
             TokenService.saveAuthToken(res.authToken)
             UserService.saveUserInfo(res.userInfo)
             OilService.saveOilInfo(res.oils)
-          
             IdleService.regiserIdleTimerResets()
             TokenService.queueCallbackBeforeExpiry(() => {
               AuthApiService.postRefreshToken()
