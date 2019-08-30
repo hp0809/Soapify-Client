@@ -15,14 +15,14 @@ const AuthApiService = {
         })
         .then(res =>
             (!res.ok)
-              ? res.json().then(e => Promise.reject(e))
+              ? res.json().then(e => console.log(e))
               : res.json()
           )
           .then(res => {
             TokenService.saveAuthToken(res.authToken)
             UserService.saveUserInfo(res.userInfo)
             OilService.saveOilInfo(res.oils)
-            console.log(res.oils)
+          
             IdleService.regiserIdleTimerResets()
             TokenService.queueCallbackBeforeExpiry(() => {
               AuthApiService.postRefreshToken()

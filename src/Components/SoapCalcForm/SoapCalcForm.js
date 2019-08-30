@@ -37,15 +37,11 @@ export default class SoapCalcForm extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
-    console.log(`handleInputChange's`, target)
-
     this.setState({
       [name]: value
     })
 
     this.handleAmountOfOil(event)
-    console.log(`handle amount of oil ran`)
   }
   
   /*calculate = () => {
@@ -62,12 +58,14 @@ export default class SoapCalcForm extends Component {
     const target = event.target
     const value = target.value
     const name = target.name
-    console.log(target)
+    const sapvalue = parseFloat(target.coef)
+    console.log(parseFloat(target.coef))
     console.log(value)
-    console.log(target.id)
+    console.log(target.className)
+    console.log(sapvalue)
 
     if(target.id === "oil") {
-      const sapValue = name.sapValue
+      
       
     } else if (target.id === "soapYield") {
       console.log(value)
@@ -104,6 +102,7 @@ export default class SoapCalcForm extends Component {
             name='palmOil'
             type='number'
             id='oil'
+            coef=' 0.141'
             onChange={this.handleInputChange}
             />
               Palm Oil
@@ -115,7 +114,7 @@ export default class SoapCalcForm extends Component {
             type='number'
             id='oil'
             onChange={this.handleInputChange} 
-            //sapValue={this.state.sapValue}          
+            sapvalue='0.183'         
              />
               Coconut Oil
         </label>
@@ -125,6 +124,7 @@ export default class SoapCalcForm extends Component {
             name='animalLard'
             type='number'
             id='oil'
+            sapvalue='0.141'
             onChange={this.handleInputChange}            
              />
               Animal Lard
@@ -135,6 +135,7 @@ export default class SoapCalcForm extends Component {
             name='sheaButter'
             type='number'
             id='oil'
+            sapvalue='0.183'
             onChange={this.handleInputChange}            
              />
               Shea Butter
@@ -145,6 +146,7 @@ export default class SoapCalcForm extends Component {
             name='tallow'
             type='number'
             id='oil' 
+            sapvalue='0.140'
             onChange={this.handleInputChange}          
              />
               Tallow
@@ -158,6 +160,7 @@ export default class SoapCalcForm extends Component {
             name='almondOil'
             type='number'
             id='oil'
+            sapvalue='0.139'
             onChange={this.handleInputChange}
              
              />
@@ -169,6 +172,7 @@ export default class SoapCalcForm extends Component {
             name='oliveOil'
             type='number'
             id='oil'
+            sapvalue='0.135'
             onChange={this.handleInputChange}
              
              />
@@ -180,6 +184,7 @@ export default class SoapCalcForm extends Component {
             name='arganOil'
             type='number'
             id='oil'
+            sapvalue='0.188'
             onChange={this.handleInputChange}
              
              />
@@ -191,6 +196,7 @@ export default class SoapCalcForm extends Component {
             name='avocadoOil'
             type='number'
             id='oil'
+            sapvalue='0.133'
             onChange={this.handleInputChange}
              
              />
@@ -202,6 +208,7 @@ export default class SoapCalcForm extends Component {
             name='castorOil'
             type='number'
             id='oil'
+            sapvalue='0.183'
             onChange={this.handleInputChange}
              
              />
