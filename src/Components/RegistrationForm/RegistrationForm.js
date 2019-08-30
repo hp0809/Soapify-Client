@@ -17,6 +17,7 @@ export default class RegistrationForm extends Component {
     console.log('registration form submitted')
 
     this.setState({ error: null})
+    
     AuthApiService.postUser({
       user_name: user_name.value,
       password: password.value,
@@ -86,7 +87,6 @@ export default class RegistrationForm extends Component {
           <Input
             name='nick_name'
             type='text'
-            required
             id='RegistrationForm_nick_name'>
           </Input>
         </div>       

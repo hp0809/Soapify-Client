@@ -7,7 +7,6 @@ import LandingPage from '../../Routes/LandingPage/LandingPage'
 import UserPage from '../../Routes/UserPage/UserPage'
 import SoapCalcPage from '../../Routes/SoapCalcPage/SoapCalcPage'
 import Header from '../../Components/Header/Header'
-import CustomSoapPage from '../../Routes/CustomSoapPage/CustomSoapPage'
 import PublicOnlyRoute from '../../Components/Utils/PublicOnlyRoute'
 import PrivateRoute from '../../Components/Utils/PrivateRoute'
 import APIContext from '../../APIContext'
@@ -15,6 +14,7 @@ import IdleService from '../../services/idle-service'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import './App.css'
+import SoapifyApiService from '../../services/soapify-api-service';
 
 class App extends Component {
 
@@ -119,13 +119,9 @@ class App extends Component {
                 path={'/user/:userId'}
                 component={UserPage}
               />
-              <Route  
+              <PrivateRoute  
                 path={'/soapCalc'}
                 component={SoapCalcPage}
-              />
-              <PrivateRoute 
-                path={'user/:userId/customSoap/:soapId'}
-                component={CustomSoapPage}
               />
               <Route  
                 component={NotFoundPage}

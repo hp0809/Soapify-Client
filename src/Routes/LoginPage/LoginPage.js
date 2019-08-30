@@ -21,7 +21,6 @@ export default class LoginPage extends Component {
     return (
       <APIContext.Consumer>
         {value => {
-          console.log(value);
           return <Section className='LoginPage'>
                   <h2>Login</h2>
                   <LoginForm

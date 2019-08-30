@@ -81,6 +81,11 @@ form {
   margin: 4px;
 }
 
+.SoapCalcForm .suggestion {
+  text-decoration: none;
+  font-size: 14px;
+}
+
 .SoapCalcForm p {
   padding-top: 10px;
   color: black;
