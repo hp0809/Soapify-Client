@@ -2,7 +2,7 @@ import React from 'react'
 
 export default React.createContext({
   soapify_users: [],
-  user_soaps: [],
+  soapify_oils: [],
   addSoap: () => {},
   deleteSoap: () => {},
   setUserInfo: () => {},

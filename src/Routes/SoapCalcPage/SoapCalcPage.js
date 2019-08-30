@@ -5,21 +5,7 @@ import { Button, Section } from '../../Components/Utils/Utils'
 
 export default class SoapCalcPage extends Component {
 
-  static contextType = APIContext;
-
-  handleAddSoap = soap => {
-    this.context.setState({
-      userSoaps: [
-        ...this.state.userSoaps,
-        soap
-      ]
-    })
-  }
-
-  onSubmitSuccess = () => {
-    
-  }
-  
+  static contextType = APIContext;  
 
   render() {
     return (
@@ -27,7 +13,7 @@ export default class SoapCalcPage extends Component {
         <h2>Make Your Soap</h2>
         <SoapCalcForm/>
         <Button type='submit'>
-            Save this soap
+            Print this soap!
         </Button>
       </Section>
     )

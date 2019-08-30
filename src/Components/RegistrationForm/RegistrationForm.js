@@ -17,6 +17,7 @@ export default class RegistrationForm extends Component {
     console.log('registration form submitted')
 
     this.setState({ error: null})
+    
     AuthApiService.postUser({
       user_name: user_name.value,
       password: password.value,
