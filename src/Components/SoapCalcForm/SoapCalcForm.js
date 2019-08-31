@@ -44,7 +44,7 @@ export default class SoapCalcForm extends Component {
     console.log(prevVal)
     
     if(!inArray && !alsoInArray) {
-      const currArr = prevVal.push({name:value})
+      const currArr = prevVal.push({name: name, value :value})
       console.log(currArr)
       this.setState({
         userIpArr: prevVal
