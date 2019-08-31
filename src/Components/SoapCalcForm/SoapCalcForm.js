@@ -67,14 +67,24 @@ export default class SoapCalcForm extends Component {
   handleAmountOfOil() {
     const userIpArr = this.state.userIpArr
     const target = userIpArr
-    const value = 1
+    const value = this.state
     const oilInfoArray = this.parseOilInfo()
-    const soapYield = this.state.soapYield     
+    const soapYield = this.state.soapYield  
+    console.log(value)
+      
     for(let i = 0; i < userIpArr.length; i ++) {
+      console.log(userIpArr[i])
       for(let n = 0; n < oilInfoArray.length; n++) {
-        if(userIpArr[i].value === oilInfoArray[n].oil_name){
-          const sapValue= parseFloat((oilInfoArray[i].sap_value) )
-          console.log((soapYield * (value / 100)) *  sapValue)
+        if(userIpArr[i] === oilInfoArray[n].oil_name){
+          
+          const sapValue= parseFloat((oilInfoArray[n].sap_value) )
+            if(userIpArr[i] === this.state){
+              
+              console.log(userIpArr[i] === this.state)
+            }
+
+
+          //console.log((soapYield * (value / 100)) *  sapValue)
         }
       }
     }
