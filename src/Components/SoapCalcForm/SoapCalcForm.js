@@ -18,8 +18,8 @@ export default class SoapCalcForm extends Component {
       arganOil:'',
       avocadoOil:'',
       castorOil:'',
-      soapYield:'',
-      userIpArr: ''
+      userIpArr: [],
+      soapYield: 0
     }
   }
 
@@ -28,26 +28,35 @@ export default class SoapCalcForm extends Component {
   }
 
  
-    handleInputChange = (event) => {
-      const target = event.target;
-      const value = target.value;
-      const name = target.name;
-      this.setState({
-        [name]: value
-      })
-      
-     const prevVal = this.state.userIpArr;
-     const currArr = userIpArr.push(name)
-     console.log(prevVal)
-     console.log(currArr)
-      this.setState({
-       userIpArr: userIpArr
-      })
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    })
     
-      this.handleOilArray(userIpArr)
+    const prevVal = this.state.userIpArr;
+    const inArray = prevVal.includes(name)
+    console.log(inArray)
+    console.log(prevVal)
+    
+    if(!inArray) {
+      const currArr = prevVal.push(name)
+      console.log(currArr)
+      this.setState({
+        userIpArr: prevVal
+      })
     }
+    console.log(this.state.userIpArr)
+    
+  }
   
- 
+ handleSoapYield = (event) => {
+  this.setState({
+      soapYield: event.currentTarget.value
+ })
+}
 
  parseOilInfo = () => {
   const oilInfo = window.localStorage.oilInfo
@@ -55,54 +64,39 @@ export default class SoapCalcForm extends Component {
   
 }
 
-  handleOilArray(event) {
-    let oilArray=[] 
-    const target = event.target
-    const value = target.value
+  handleAmountOfOil() {
+    const userIpArr = this.state.userIpArr
+    const target = userIpArr
+    const value = 1
     const oilInfoArray = this.parseOilInfo()
-    const name = target.name
-    
-    /*function handleWaterAmount() {
-      
-      if(target.id === "soapYield") {
-        console.log(value)
-        return value
+    const soapYield = this.state.soapYield     
+    for(let i = 0; i < userIpArr.length; i ++) {
+      for(let n = 0; n < oilInfoArray.length; n++) {
+        if(userIpArr[i].value === oilInfoArray[n].oil_name){
+          const sapValue= parseFloat((oilInfoArray[i].sap_value) )
+          console.log((soapYield * (value / 100)) *  sapValue)
+        }
       }
-    } */
-    
-  
-    function handleAmountOfOil() { 
-      
-      if(target.id === "oil") {
-        
-        for(let i = 0; i < oilInfoArray.length; i ++) {
-          var oilWeight = {}
-            if(oilInfoArray[i].oil_name === name) {
-              oilWeight= parseFloat((oilInfoArray[i].sap_value) * value)
-              
-            }
-            //oilArray.push(oilWeight)
-            oilArray.push(oilWeight)   
-        }  
-      }
-      console.log(oilArray)
-      }
-      console.log(handleAmountOfOil())
-      
-    
-  };
+    }
+  }
 
+
+
+        //if(oilInfoArray[i].oil_name === name) {
+          //const sapValue= parseFloat((oilInfoArray[i].sap_value) )
+          //console.log((soapYield * (value / 100)) *  sapValue)
+       // }    
+    
+
+  handleAmountOfWater=()=> {
+    console.log(`hello`)
+  }
+    
   handleSubmit=(ev)=> {
     ev.preventDefault()
-    console.log(this.handleAmountOfOil)
-    console.log(this.handleWaterAmount)
+    this.handleAmountOfOil()    
   }
   
-  
-
-
-  
-
   render() {
     
 
@@ -113,7 +107,7 @@ export default class SoapCalcForm extends Component {
         >
 
         <p>Amount of Yield (the size of your container):</p>
-        <input type="number" name="soapYield" id="soapYield" placeholder="1000" onChange={this.handleInputChange}/>ml<br/>
+        <input type="number" name="soapYield" id="soapYield" placeholder="1000" onChange={this.handleSoapYield}/>ml<br/>
         
         <br/>
 
