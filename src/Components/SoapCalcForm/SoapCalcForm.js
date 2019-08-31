@@ -38,11 +38,13 @@ export default class SoapCalcForm extends Component {
     
     const prevVal = this.state.userIpArr;
     const inArray = prevVal.includes(name)
+    const alsoInArray = prevVal.includes(value)
     console.log(inArray)
+    console.log(alsoInArray)
     console.log(prevVal)
     
-    if(!inArray) {
-      const currArr = prevVal.push(name)
+    if(!inArray && !alsoInArray) {
+      const currArr = prevVal.push({name:value})
       console.log(currArr)
       this.setState({
         userIpArr: prevVal
@@ -70,7 +72,6 @@ export default class SoapCalcForm extends Component {
     const value = this.state
     const oilInfoArray = this.parseOilInfo()
     const soapYield = this.state.soapYield  
-    console.log(value)
       
     for(let i = 0; i < userIpArr.length; i ++) {
       console.log(userIpArr[i])
@@ -78,10 +79,7 @@ export default class SoapCalcForm extends Component {
         if(userIpArr[i] === oilInfoArray[n].oil_name){
           
           const sapValue= parseFloat((oilInfoArray[n].sap_value) )
-            if(userIpArr[i] === this.state){
-              
-              console.log(userIpArr[i] === this.state)
-            }
+          console.log(sapValue)
 
 
           //console.log((soapYield * (value / 100)) *  sapValue)
