@@ -17,8 +17,7 @@ const SoapifyApiService = {
             : res.json()
         )
         .then(res => {
-            console.log(res.oils)
-            OilService.saveOilInfo(res.oils)
+            OilService.saveOilInfo(res)
             return res
         })
     },

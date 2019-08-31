@@ -14,7 +14,6 @@ import IdleService from '../../services/idle-service'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import './App.css'
-import SoapifyApiService from '../../services/soapify-api-service';
 
 class App extends Component {
 

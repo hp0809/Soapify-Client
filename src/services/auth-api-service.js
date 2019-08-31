@@ -2,7 +2,6 @@ import config from '../config'
 import TokenService from '../services/token-service'
 import UserService from '../services/user-service'
 import IdleService from '../services/idle-service'
-import OilService from './oil-service';
 
 const AuthApiService = {
     postLogin({ user_name, password }) {
@@ -21,7 +20,6 @@ const AuthApiService = {
           .then(res => {
             TokenService.saveAuthToken(res.authToken)
             UserService.saveUserInfo(res.userInfo)
-            OilService.saveOilInfo(res.oils)
             IdleService.regiserIdleTimerResets()
             TokenService.queueCallbackBeforeExpiry(() => {
               AuthApiService.postRefreshToken()

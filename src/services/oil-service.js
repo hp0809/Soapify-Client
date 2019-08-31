@@ -1,8 +1,8 @@
 import config from '../config'
 
 const OilService = {
-    saveOilInfo(oils) {
-        window.localStorage.setItem(config.OIL_INFO, JSON.stringify(oils))
+    saveOilInfo(res) {
+        window.localStorage.setItem(config.OIL_INFO, JSON.stringify(res))
       },
       getOilInfo() {
           return window.localStorage.getItem(config.OIL_INFO)

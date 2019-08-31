@@ -12,12 +12,6 @@ export default class UserPage extends Component {
         const userInfo = window.localStorage.userInfo
         return JSON.parse(userInfo)
     } 
-
-    parseSoapInfo = () => {
-        const soapInfo = window.localStorage.soapInfo
-        console.log(soapInfo)
-        
-    }
     
     render() {
         const userInfo = this.parseUserInfo();
@@ -43,21 +37,4 @@ export default class UserPage extends Component {
             </Section>
         )
     }
-}
-
-function ListSoaps() {
-    const soapInfo = window.localStorage.soapInfo
-    const soap = JSON.parse(soapInfo)
-    return(
-        <ul>
-            {soap.map(soap =>
-                <li key={soap.id} value={soap.id}>
-                    <Link to={`/customSoap${soap.id}`}>
-                        Hello
-                        {soap.name}
-                    </Link>
-                </li>
-            )}
-        </ul>
-    )
 }

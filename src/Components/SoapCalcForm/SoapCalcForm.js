@@ -18,63 +18,87 @@ export default class SoapCalcForm extends Component {
       arganOil:'',
       avocadoOil:'',
       castorOil:'',
-      soapYield:''
+      soapYield:'',
+      userIpArr: ''
     }
   }
 
   componentDidMount() {
     SoapifyApiService.getSAPValues()
-
   }
 
- /* parseSoapInfo = () => {
-    const oilInfo = window.localStorage.oils
-    console.log(oilInfo)
-    
-}
-*/
-  handleInputChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value
-    })
-
-    this.handleAmountOfOil(event)
-  }
-  
-  /*calculate = () => {
-      document.getElementById("calculate").addEventListener('click',
-      function(event){
-        event.preventDefault()
+ 
+    handleInputChange = (event) => {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+      this.setState({
+        [name]: value
       })
-      const oil = this.handleAmountOfOil()
-      return oil
-  }
-  */
+      
+     const prevVal = this.state.userIpArr;
+     const currArr = userIpArr.push(name)
+     console.log(prevVal)
+     console.log(currArr)
+      this.setState({
+       userIpArr: userIpArr
+      })
+    
+      this.handleOilArray(userIpArr)
+    }
+  
+ 
 
-  handleAmountOfOil = (event) => {
+ parseOilInfo = () => {
+  const oilInfo = window.localStorage.oilInfo
+  return JSON.parse(oilInfo)
+  
+}
+
+  handleOilArray(event) {
+    let oilArray=[] 
     const target = event.target
     const value = target.value
+    const oilInfoArray = this.parseOilInfo()
     const name = target.name
-    const sapvalue = parseFloat(target.coef)
-    console.log(parseFloat(target.coef))
-    console.log(value)
-    console.log(target.className)
-    console.log(sapvalue)
-
-    if(target.id === "oil") {
-      
-      
-    } else if (target.id === "soapYield") {
-      console.log(value)
-    } else {
-      return `didn't work`
-    }
-
     
+    /*function handleWaterAmount() {
+      
+      if(target.id === "soapYield") {
+        console.log(value)
+        return value
+      }
+    } */
+    
+  
+    function handleAmountOfOil() { 
+      
+      if(target.id === "oil") {
+        
+        for(let i = 0; i < oilInfoArray.length; i ++) {
+          var oilWeight = {}
+            if(oilInfoArray[i].oil_name === name) {
+              oilWeight= parseFloat((oilInfoArray[i].sap_value) * value)
+              
+            }
+            //oilArray.push(oilWeight)
+            oilArray.push(oilWeight)   
+        }  
+      }
+      console.log(oilArray)
+      }
+      console.log(handleAmountOfOil())
+      
+    
+  };
+
+  handleSubmit=(ev)=> {
+    ev.preventDefault()
+    console.log(this.handleAmountOfOil)
+    console.log(this.handleWaterAmount)
   }
+  
+  
 
 
   
@@ -84,8 +108,8 @@ export default class SoapCalcForm extends Component {
 
     return (
       <form
+        onSubmit={this.handleSubmit}
         className='SoapCalcForm'
-        //onSubmit={this.handleSubmit()}
         >
 
         <p>Amount of Yield (the size of your container):</p>
@@ -99,7 +123,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='palmOil'>
           <input
             className='percentage' 
-            name='palmOil'
+            name='Palm Oil'
             type='number'
             id='oil'
             coef=' 0.141'
@@ -110,7 +134,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='coconutOil'>
           <input 
             className='percentage' 
-            name='coconutOil'
+            name='Coconut Oil'
             type='number'
             id='oil'
             onChange={this.handleInputChange} 
@@ -121,7 +145,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='animalLard'>
           <input 
             className='percentage' 
-            name='animalLard'
+            name='Animal Lard'
             type='number'
             id='oil'
             sapvalue='0.141'
@@ -129,7 +153,7 @@ export default class SoapCalcForm extends Component {
              />
               Animal Lard
         </label>
-        <label htmlFor='sheaButter'>
+        <label htmlFor='Shea Butter'>
           <input 
             className='percentage' 
             name='sheaButter'
@@ -143,7 +167,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='tallow'>
           <input 
             className='percentage'
-            name='tallow'
+            name='Tallow'
             type='number'
             id='oil' 
             sapvalue='0.140'
@@ -157,7 +181,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='almondOil'>
           <input 
             className='percentage' 
-            name='almondOil'
+            name='Almond Oil'
             type='number'
             id='oil'
             sapvalue='0.139'
@@ -169,7 +193,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='oliveOil'>
           <input 
             className='percentage' 
-            name='oliveOil'
+            name='Olive Oil'
             type='number'
             id='oil'
             sapvalue='0.135'
@@ -181,7 +205,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='arganOil'>
           <input 
             className='percentage' 
-            name='arganOil'
+            name='Argan Oil'
             type='number'
             id='oil'
             sapvalue='0.188'
@@ -193,7 +217,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='avocadoOil'>
           <input 
             className='percentage' 
-            name='avocadoOil'
+            name='Avocado Oil'
             type='number'
             id='oil'
             sapvalue='0.133'
@@ -205,7 +229,7 @@ export default class SoapCalcForm extends Component {
         <label htmlFor='castorOil'>
           <input 
             className='percentage' 
-            name='castorOil'
+            name='Castor Oil'
             type='number'
             id='oil'
             sapvalue='0.183'
@@ -217,7 +241,7 @@ export default class SoapCalcForm extends Component {
         <br/>
         <br/>
 
-        <Button  id='calculate'>
+        <Button type='submit' id='calculate' >
             Calculate
         </Button>
         <br/>
