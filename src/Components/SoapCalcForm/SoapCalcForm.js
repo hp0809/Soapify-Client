@@ -32,10 +32,51 @@ export default class SoapCalcForm extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    this.setState({
-      [name]: value
-    })
-    
+    console.log(name)
+    if(name === 'palmOil') {
+      this.setState({
+        palmOil: value
+      })
+      console.log(this.state)
+    } else if (name === 'cococnutOil'){
+      this.setState({
+        coconutOil: value
+      })
+    } else if (name === 'animalLard'){
+      this.setState({
+        animalLard: value
+      })
+    } else if (name === 'sheaButter'){
+      this.setState({
+        sheaButter: value
+      })
+    } else if (name === 'tallow'){
+      this.setState({
+        tallow: value
+      })
+    } else if (name === 'almondOil'){
+      this.setState({
+        almondOil: value
+      })
+    } else if (name === 'oliveOil'){
+      this.setState({
+        oliveOil: value
+      })
+    } else if (name === 'arganOil'){
+      this.setState({
+        arganOil: value
+      })
+    } else if (name === 'avocadoOil'){
+      this.setState({
+        avocadoOil: value
+      })
+    } else if (name === 'castorOil'){
+      this.setState({
+        castorOil: value
+      })
+    }
+  }
+/*
     const prevVal = this.state.userIpArr;
     const inArray = prevVal.includes(name)
     const alsoInArray = prevVal.includes(value)
@@ -44,15 +85,14 @@ export default class SoapCalcForm extends Component {
     console.log(prevVal)
     
     if(!inArray && !alsoInArray) {
-      const currArr = prevVal.push({name: name, value :value})
+      const currArr = prevVal.push({name: name, value: value})
       console.log(currArr)
       this.setState({
         userIpArr: prevVal
       })
     }
     console.log(this.state.userIpArr)
-    
-  }
+    */
   
  handleSoapYield = (event) => {
   this.setState({
@@ -67,12 +107,106 @@ export default class SoapCalcForm extends Component {
 }
 
   handleAmountOfOil() {
-    const userIpArr = this.state.userIpArr
-    const target = userIpArr
-    const value = this.state
     const oilInfoArray = this.parseOilInfo()
-    const soapYield = this.state.soapYield  
-      
+    const soapYield = this.state.soapYield     
+    const userIpArr = this.state.userIpArr
+    let sapValArr = [...this.state.userIpArr]
+
+    console.log(this.state.palmOil)
+
+    if(this.state.palmOil === '') {
+      let object = {
+        name: 'palmOil', value: this.state.palmOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.coconutOil === ''){
+      let object = {
+        name: 'coconutOil', value: this.state.coconutOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.animalLard === ''){
+      let object = {
+        name: 'animalLard', value: this.state.animalLard
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.sheaButter === ''){
+      let object = {
+        name: 'sheaButter', value: this.state.sheaButter
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.tallow === ''){
+      let object = {
+        name: 'tallow', value: this.state.tallow
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.almondOil === ''){
+      let object = {
+        name: 'almondOil', value: this.state.almondOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.oliveOil === ''){
+      let object = {
+        name: 'oliveOil', value: this.state.oliveOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.arganOil === ''){
+      let object = {
+        name: 'arganOil', value: this.state.arganOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.avocadoOil === ''){
+      let object = {
+        name: 'avocadoOil', value: this.state.avocadoOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    } else if (this.state.castorOil === ''){
+      let object = {
+        name: 'castorOil', value: this.state.castorOil
+      }
+      sapValArr.push(object)
+
+      this.setState({
+        userIpArr: sapValArr
+      })
+    }
+    console.log(this.state.userIpArr)
+
     for(let i = 0; i < userIpArr.length; i ++) {
       console.log(userIpArr[i])
       for(let n = 0; n < oilInfoArray.length; n++) {
@@ -93,8 +227,7 @@ export default class SoapCalcForm extends Component {
         //if(oilInfoArray[i].oil_name === name) {
           //const sapValue= parseFloat((oilInfoArray[i].sap_value) )
           //console.log((soapYield * (value / 100)) *  sapValue)
-       // }    
-    
+       // }      
 
   handleAmountOfWater=()=> {
     console.log(`hello`)
