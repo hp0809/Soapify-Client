@@ -91,9 +91,7 @@ export default class SoapCalcForm extends Component {
 }
 
   handleAmountOfOil() {
-    const oilInfoArray = this.parseOilInfo()
-    const soapYield = this.state.soapYield     
-    const userIpArr = this.state.userIpArr
+    
     let sapValArr = [...this.state.userIpArr]    
 
     if(!!this.state.palmOil.length) {      
@@ -165,35 +163,33 @@ export default class SoapCalcForm extends Component {
       }
       sapValArr.push(object)
     }
-
-    this.setState({
-      userIpArr: sapValArr
-    })
-
-    console.log(sapValArr)
-    debugger
-    for(let i = 0; i < userIpArr.length; i ++) {
-      console.log(userIpArr)
-      for(let n = 0; n < oilInfoArray.length; n++) {
-        if(userIpArr[i] === oilInfoArray[n].oil_name){
-          
-          const sapValue= parseFloat(oilInfoArray[n].sap_value)
-          console.log(sapValue)
-          
-
-
-          //console.log((soapYield * (value / 100)) *  sapValue)
-        }
-      }
+    this.handleSetState()
     }
-  }
 
-
-
-        //if(oilInfoArray[i].oil_name === name) {
-          //const sapValue= parseFloat((oilInfoArray[i].sap_value) )
-          //console.log((soapYield * (value / 100)) *  sapValue)
-       // }      
+    handleSetState = (sapValArr) => {
+      const oilInfoArray = this.parseOilInfo()
+      const soapYield = this.state.soapYield     
+      const userIpArr = this.state.userIpArr
+      
+      this.setState({
+        userIpArr: sapValArr
+      }, () => {
+        for(let i = 0; i < userIpArr.length; i ++) {
+          const value = userIpArr[i].value
+          console.log(value)
+          for(let n = 0; n < oilInfoArray.length; n++) {
+            if(userIpArr[i] === oilInfoArray[n].oil_name){
+              
+              const sapValue= parseFloat(oilInfoArray[n].sap_value)
+              console.log((soapYield * (parseFloat(value) / 100) *  sapValue))
+              return (soapYield * (parseFloat(value) / 100) *  sapValue)
+              
+            }
+          }
+        }
+      })        
+    }
+  
 
   handleAmountOfWater=()=> {
     console.log(`hello`)
