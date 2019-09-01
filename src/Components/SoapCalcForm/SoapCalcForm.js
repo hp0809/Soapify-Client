@@ -39,39 +39,39 @@ export default class SoapCalcForm extends Component {
         palmOil: value
       })
       
-    } else if (name === 'Cococnut Oil'){
+    }  if (name === 'Cococnut Oil'){
       this.setState({
         coconutOil: value
       })
-    } else if (name === 'Animal Lard'){
+    }  if (name === 'Animal Lard'){
       this.setState({
         animalLard: value
       })
-    } else if (name === 'Shea Butter'){
+    }  if (name === 'Shea Butter'){
       this.setState({
         sheaButter: value
       })
-    } else if (name === 'Tallow'){
+    }  if (name === 'Tallow'){
       this.setState({
         tallow: value
       })
-    } else if (name === 'Almond Oil'){
+    }  if (name === 'Almond Oil'){
       this.setState({
         almondOil: value
       })
-    } else if (name === 'Olive Oil'){
+    }  if (name === 'Olive Oil'){
       this.setState({
         oliveOil: value
       })
-    } else if (name === 'arganOil'){
+    }  if (name === 'arganOil'){
       this.setState({
         arganOil: value
       })
-    } else if (name === 'Avocado Oil'){
+    }  if (name === 'Avocado Oil'){
       this.setState({
         avocadoOil: value
       })
-    } else if (name === 'Castor Oil'){
+    }  if (name === 'Castor Oil'){
       this.setState({
         castorOil: value
       })
@@ -111,107 +111,77 @@ export default class SoapCalcForm extends Component {
     const oilInfoArray = this.parseOilInfo()
     const soapYield = this.state.soapYield     
     const userIpArr = this.state.userIpArr
-    let sapValArr = []
-
-    console.log(this.state)
+    let sapValArr = [...this.state.userIpArr]
 
     
 
-    if(!this.state.palmOil == '') {
-      console.log(this.state.palmOil)
+    if(this.state.palmOil.length === '') {
+      
       let object = {
         name: 'Palm Oil', value: this.state.palmOil
       }
       sapValArr.push(object)
-      console.log(sapValArr)
-
-      this.setState({
-        userIpArr: sapValArr
-      })
-      console.log(this.state)
-    } else if (!this.state.coconutOil === ''){
+    } if (!this.state.coconutOil.length ){
+      console.log(this.state.coconutOil)
       let object = {
         name: 'Coconut Oil', value: this.state.coconutOil
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.animalLard === ''){
+    } if (!!this.state.animalLard.length ){
       let object = {
         name: 'Animal Lard', value: this.state.animalLard
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.sheaButter === ''){
+    }  if (!!this.state.sheaButter.length ){
       let object = {
         name: 'Shea Butter', value: this.state.sheaButter
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.tallow === ''){
+    }  if (!!this.state.tallow.length ){
       let object = {
         name: 'Tallow', value: this.state.tallow
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.almondOil === ''){
+    }  if (!!this.state.almondOil.length ){
       let object = {
         name: 'Almond Oil', value: this.state.almondOil
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.oliveOil === ''){
+    }  if (!!this.state.oliveOil.length ){
       let object = {
         name: 'Olive Oil', value: this.state.oliveOil
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.arganOil === ''){
+    }  if (!!this.state.arganOil.length ){
       let object = {
         name: 'Argan Oil', value: this.state.arganOil
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.avocadoOil === ''){
+    }  if (!!this.state.avocadoOil.length ){
       let object = {
         name: 'Avocado Oil', value: this.state.avocadoOil
       }
       sapValArr.push(object)
 
-      this.setState({
-        userIpArr: sapValArr
-      })
-    } else if (!this.state.castorOil === ''){
+    }  if (!!this.state.castorOil.length ){
       let object = {
         name: 'Castor Oil', value: this.state.castorOil
       }
       sapValArr.push(object)
-
-      this.setState({
-        userIpArr: sapValArr
-      })
     }
+    console.log(sapValArr)
+    this.setState({
+      userIpArr: sapValArr
+    })
     console.log(this.state.userIpArr)
+    
 
     for(let i = 0; i < userIpArr.length; i ++) {
       console.log(userIpArr[i])
