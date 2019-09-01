@@ -32,6 +32,7 @@ export default class LandingPage extends Component {
     }
     render() {
         return(
+            <>
             <Section className='MainPage'>
                 <h1>Soapify</h1>
                 <h2>A Soap Calculation App</h2>
@@ -39,6 +40,11 @@ export default class LandingPage extends Component {
                     ? this.renderCalcLink()
                     : this.renderLoginLink()}
             </Section>
+            <Section className='ForTesters'>
+                <h3>Hello Testers!</h3>
+                <p>Please register first to use the calculator!</p>
+            </Section>
+            </>
         )
     }
 }

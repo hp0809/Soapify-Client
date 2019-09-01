@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button} from '../Utils/Utils'
 import SoapifyApiService from '../../services/soapify-api-service'
+import { forStatement } from '@babel/types';
+
 
 
 
@@ -19,7 +21,10 @@ export default class SoapCalcForm extends Component {
       avocadoOil:'',
       castorOil:'',
       userIpArr: [],
-      soapYield: 0
+      soapYield: 0,
+      totalOil: [],
+      totalWater:'',
+      totalLye:''
     }
   }
 
@@ -163,46 +168,94 @@ export default class SoapCalcForm extends Component {
       }
       sapValArr.push(object)
     }
-    this.handleSetState()
+    this.setState({
+      userIpArr: sapValArr
+    }, () => {
+      this.handleOilWeightAndLye()
+    }) 
     }
 
-    handleSetState = (sapValArr) => {
+    handleOilWeightAndLye = () => {
+
       const oilInfoArray = this.parseOilInfo()
       const soapYield = this.state.soapYield     
       const userIpArr = this.state.userIpArr
       
-      this.setState({
-        userIpArr: sapValArr
-      }, () => {
+      let lyeAmounts = []
+      let oilAmounts = []
+        
         for(let i = 0; i < userIpArr.length; i ++) {
           const value = userIpArr[i].value
-          console.log(value)
+      
           for(let n = 0; n < oilInfoArray.length; n++) {
-            if(userIpArr[i] === oilInfoArray[n].oil_name){
-              
+            
+            if(userIpArr[i].name === oilInfoArray[n].oil_name){  
+                          
               const sapValue= parseFloat(oilInfoArray[n].sap_value)
-              console.log((soapYield * (parseFloat(value) / 100) *  sapValue))
-              return (soapYield * (parseFloat(value) / 100) *  sapValue)
+              const oilWeights = (soapYield * (parseFloat(value)/100))
+              let object = {
+                oil: `${userIpArr[i].name}`, weight: oilWeights
+              }
+              oilAmounts.push(object)
+              
+              const lyeSapAmount = (soapYield * (parseFloat(value) / 100) *  sapValue)
+              lyeAmounts.push(lyeSapAmount)
+              
               
             }
           }
         }
-      })        
-    }
+        const oilTotalWeight = oilAmounts        
+        const lyeSum = arr => arr.reduce((a,b) => a+b,0)
+        const lyeTotal = (lyeSum(lyeAmounts) * 0.85)
+        this.handleAmountOfWater(lyeTotal)
+        this.setState({
+          totalLye: lyeTotal,
+          totalOil: oilTotalWeight
+        }, () => {
+          this.handleAmountOfWater(lyeTotal)
+        })
+      }       
+    
   
 
-  handleAmountOfWater=()=> {
-    console.log(`hello`)
+  handleAmountOfWater=(lyeTotal)=> {
+    const waterTotal = lyeTotal * 1.75
+    this.setState({
+      totalWater: waterTotal
+    }, () => {
+      this.renderOilList()
+    })
   }
     
   handleSubmit=(ev)=> {
     ev.preventDefault()
     this.handleAmountOfOil()    
   }
-  
-  render() {
-    
 
+  renderOilList=()=> {
+    console.log(this.state.totalOil.length)
+    const totalOil = this.state.totalOil
+
+    totalOil.forEach(function (item, index) {
+      console.log(`hello`)
+    })
+    /*for(let i = 0; i < totalOil.length; i++){
+        <li key={totalOil[i]} value={totalOil[i].weight}>
+          {totalOil[i].oil} : {totalOil[i].weight}
+          </li>
+    */}
+  
+
+  
+      
+
+
+
+ 
+  
+  render() { 
+    let totalOil = this.state.totalOil || {}
     return (
       <form
         onSubmit={this.handleSubmit}
@@ -344,16 +397,21 @@ export default class SoapCalcForm extends Component {
         <br/>
         <br/>
         
-        <p>Water:</p>
-        <input type="number" name="waterAmount" readOnly>
+        <p>Water (ml):</p>
         
-        </input>
+        <p> {this.state.totalWater}</p>
+        
         <br/>
-        <p>Total weight of Oils:</p>
-        <p id='oilTotal'></p>
+        <h6>Total weight of Oils (g):</h6>
+        
+        <ul id='oilTotal'>
+          {this.state.totalOil.map(obj =>
+            <li key={obj.oil}> {obj.oil} : {obj.weight}</li>)}
+        </ul>
+       
 
         <p>Caustic Soda needed (g):</p>
-        <input type="number" name="causticSoda" readOnly/>
+        <p>{this.state.totalLye}</p>
         <br/>
       </form>
     )
