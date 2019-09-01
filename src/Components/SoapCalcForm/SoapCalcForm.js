@@ -117,16 +117,19 @@ export default class SoapCalcForm extends Component {
 
     
 
-    if(this.state.palmOil === '') {
+    if(!this.state.palmOil == '') {
+      console.log(this.state.palmOil)
       let object = {
         name: 'Palm Oil', value: this.state.palmOil
       }
       sapValArr.push(object)
+      console.log(sapValArr)
 
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.coconutOil === ''){
+      console.log(this.state)
+    } else if (!this.state.coconutOil === ''){
       let object = {
         name: 'Coconut Oil', value: this.state.coconutOil
       }
@@ -135,7 +138,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.animalLard === ''){
+    } else if (!this.state.animalLard === ''){
       let object = {
         name: 'Animal Lard', value: this.state.animalLard
       }
@@ -144,7 +147,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.sheaButter === ''){
+    } else if (!this.state.sheaButter === ''){
       let object = {
         name: 'Shea Butter', value: this.state.sheaButter
       }
@@ -153,7 +156,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.tallow === ''){
+    } else if (!this.state.tallow === ''){
       let object = {
         name: 'Tallow', value: this.state.tallow
       }
@@ -162,7 +165,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.almondOil === ''){
+    } else if (!this.state.almondOil === ''){
       let object = {
         name: 'Almond Oil', value: this.state.almondOil
       }
@@ -171,7 +174,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.oliveOil === ''){
+    } else if (!this.state.oliveOil === ''){
       let object = {
         name: 'Olive Oil', value: this.state.oliveOil
       }
@@ -180,7 +183,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.arganOil === ''){
+    } else if (!this.state.arganOil === ''){
       let object = {
         name: 'Argan Oil', value: this.state.arganOil
       }
@@ -189,7 +192,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.avocadoOil === ''){
+    } else if (!this.state.avocadoOil === ''){
       let object = {
         name: 'Avocado Oil', value: this.state.avocadoOil
       }
@@ -198,7 +201,7 @@ export default class SoapCalcForm extends Component {
       this.setState({
         userIpArr: sapValArr
       })
-    } else if (this.state.castorOil === ''){
+    } else if (!this.state.castorOil === ''){
       let object = {
         name: 'Castor Oil', value: this.state.castorOil
       }
