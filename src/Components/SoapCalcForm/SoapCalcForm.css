@@ -1,0 +1,78 @@
+* {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+ul {
+    text-align: center;
+}
+li{
+    display: block;
+}
+
+.results {
+    text-align: center;
+    scroll-behavior: smooth;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.75); 
+    border-radius: 10px
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.75); 
+    border-radius: 10px;
+    max-width: 1000px;
+}
+
+.SoapCalcForm input {  
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    margin: 4px;
+}
+.SoapCalcForm .suggestion {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.SoapCalcForm p {
+    padding-top: 10px;
+    color: black;
+    text-decoration: underline ;
+}
+
+.SoapCalcForm label {
+    font-size: 16px;
+    display: inline-flex;
+    width: 120px;
+    margin: 5px;
+    padding-top: 10px;
+}
+.percentage {
+    width: 60px;
+    height: 40px;
+    padding: 0px;
+
+}
+
+
+@media only screen and (max-width: 800px) {
+    .results {
+        margin: 10px;
+    }
+    form {
+        margin: 10px;
+        padding: 10px;
+        
+      }
+  }
+
+
+

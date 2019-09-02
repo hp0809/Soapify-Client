@@ -20,15 +20,16 @@ export default class Header extends Component {
     const user = JSON.parse(userInfo)
     return (
       <div className='Header_logged-in'>
-        <Link 
-          to={`/user/${user.userId}`}>
-          Your Page
-        </Link>
         <Link
           onClick={this.handleLogoutClick}
           to='/'>
           Logout
         </Link>
+        <Link 
+          to={`/user/${user.userId}`}>
+          Your Page
+        </Link>
+        
       </div>
     )
   }
@@ -59,7 +60,7 @@ export default class Header extends Component {
       <nav className='Header'>
         <h1>
           <Link to='/'>
-            Soapify
+            Soapify 
           </Link>
         </h1>
         {TokenService.hasAuthToken()

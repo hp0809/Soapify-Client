@@ -1,0 +1,14 @@
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.userInfo{
+    max-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom:10px;
+    padding-top:10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.75); 
+    border-radius: 10px;
+}

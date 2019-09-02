@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SoapCalcForm from '../../Components/SoapCalcForm/SoapCalcForm'
 import APIContext from '../../APIContext'
-import { Button, Section } from '../../Components/Utils/Utils'
+import { Section } from '../../Components/Utils/Utils'
 
 export default class SoapCalcPage extends Component {
 
@@ -12,9 +12,6 @@ export default class SoapCalcPage extends Component {
       <Section className='SoapCalcPage'>
         <h2>Make Your Soap</h2>
         <SoapCalcForm/>
-        <Button type='submit'>
-            Print this soap!
-        </Button>
       </Section>
     )
   }

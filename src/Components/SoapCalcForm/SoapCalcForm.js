@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Button} from '../Utils/Utils'
+import { Link } from "react-scroll"
 import SoapifyApiService from '../../services/soapify-api-service'
-import { forStatement } from '@babel/types';
+import './SoapCalcForm.css'
 
 
 
@@ -10,6 +11,8 @@ export default class SoapCalcForm extends Component {
   constructor(props) {
     super(props);
     this.state={
+      isHidden: true,
+      disabled: false,
       palmOil:'',
       coconutOil:'',
       animalLard:'',
@@ -26,13 +29,14 @@ export default class SoapCalcForm extends Component {
       totalWater:'',
       totalLye:''
     }
+    this.results = React.createRef()
   }
 
   componentDidMount() {
     SoapifyApiService.getSAPValues()
   }
 
- 
+  
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -192,7 +196,7 @@ export default class SoapCalcForm extends Component {
             if(userIpArr[i].name === oilInfoArray[n].oil_name){  
                           
               const sapValue= parseFloat(oilInfoArray[n].sap_value)
-              const oilWeights = (soapYield * (parseFloat(value)/100))
+              const oilWeights = Math.round((soapYield * (parseFloat(value)/100)))
               let object = {
                 oil: `${userIpArr[i].name}`, weight: oilWeights
               }
@@ -207,7 +211,7 @@ export default class SoapCalcForm extends Component {
         }
         const oilTotalWeight = oilAmounts        
         const lyeSum = arr => arr.reduce((a,b) => a+b,0)
-        const lyeTotal = (lyeSum(lyeAmounts) * 0.85)
+        const lyeTotal = Math.round((lyeSum(lyeAmounts) * 0.85))
         this.handleAmountOfWater(lyeTotal)
         this.setState({
           totalLye: lyeTotal,
@@ -220,50 +224,85 @@ export default class SoapCalcForm extends Component {
   
 
   handleAmountOfWater=(lyeTotal)=> {
-    const waterTotal = lyeTotal * 1.75
+    const waterTotal = Math.round(lyeTotal * 1.75)
     this.setState({
       totalWater: waterTotal
     }, () => {
-      this.renderOilList()
+      this.renderResults()
     })
   }
     
   handleSubmit=(ev)=> {
     ev.preventDefault()
-    this.handleAmountOfOil()    
+    this.handleAmountOfOil()
+    this.handleDisableButton()
+    this.handleScroll()
+        
   }
 
-  renderOilList=()=> {
-    console.log(this.state.totalOil.length)
-    const totalOil = this.state.totalOil
-
-    totalOil.forEach(function (item, index) {
-      console.log(`hello`)
+  toggleHidden= ()=> {
+    
+    console.log(`handlescroll ran`)
+    this.setState({
+      isHidden: !this.state.isHidden
     })
-    /*for(let i = 0; i < totalOil.length; i++){
-        <li key={totalOil[i]} value={totalOil[i].weight}>
-          {totalOil[i].oil} : {totalOil[i].weight}
-          </li>
-    */}
-  
+    
+    
+  } 
 
-  
-      
-
-
-
- 
-  
-  render() { 
+  renderResults =() => {
     let totalOil = this.state.totalOil || {}
+    
+    return(
+      <div className="results" id="results" >
+      <h2 ref={this.results}>Your Results</h2>
+        <h4 >Water (ml):</h4>  
+             
+          <p> {this.state.totalWater}</p>
+        
+        <h4>Total weight of Oils (g):</h4>
+          <ul id='oilTotal'>
+            {totalOil.map(obj =>
+              <li key={obj.oil}> {obj.oil} : {obj.weight}</li>)}
+          </ul>
+        <h4>Caustic Soda needed (g):</h4>
+          <p >{this.state.totalLye}</p>
+      <br/>
+      </div>
+      
+    )
+  }
+
+  handleDisableButton = () => {
+    if(this.state.disabled) {
+      return;
+    }
+    this.setState({
+      disabled: true
+    })
+  }
+  handleReset = () => {
+    return window.location.href = '/soapCalc'
+  }
+
+  handleScroll = () => {
+    if(!this.state.hidden){
+      this.results.current.scrollIntoView({ 
+         behavior: "smooth"
+      })
+  }
+}
+
+  render() { 
     return (
+      <>
       <form
         onSubmit={this.handleSubmit}
         className='SoapCalcForm'
         >
 
         <p>Amount of Yield (the size of your container):</p>
-        <input type="number" name="soapYield" id="soapYield" placeholder="1000" onChange={this.handleSoapYield}/>ml<br/>
+        <input type="number" name="soapYield" id="soapYield" placeholder="1000" min='0' onChange={this.handleSoapYield}/>ml<br/>
         
         <br/>
 
@@ -276,8 +315,10 @@ export default class SoapCalcForm extends Component {
             name='Palm Oil'
             type='number'
             id='oil'
-            coef=' 0.141'
+            sapvalue=' 0.141'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
             />
               Palm Oil
         </label>
@@ -288,7 +329,9 @@ export default class SoapCalcForm extends Component {
             type='number'
             id='oil'
             onChange={this.handleInputChange} 
-            sapvalue='0.183'         
+            sapvalue='0.183'
+            min='0'
+            max='100'        
              />
               Coconut Oil
         </label>
@@ -299,7 +342,9 @@ export default class SoapCalcForm extends Component {
             type='number'
             id='oil'
             sapvalue='0.141'
-            onChange={this.handleInputChange}            
+            onChange={this.handleInputChange}
+            min='0'
+            max='100'            
              />
               Animal Lard
         </label>
@@ -310,7 +355,9 @@ export default class SoapCalcForm extends Component {
             type='number'
             id='oil'
             sapvalue='0.183'
-            onChange={this.handleInputChange}            
+            onChange={this.handleInputChange} 
+            min='0'
+            max='100'           
              />
               Shea Butter
         </label>
@@ -321,7 +368,9 @@ export default class SoapCalcForm extends Component {
             type='number'
             id='oil' 
             sapvalue='0.140'
-            onChange={this.handleInputChange}          
+            onChange={this.handleInputChange}  
+            min='0'
+            max='100'        
              />
               Tallow
         </label>
@@ -336,6 +385,8 @@ export default class SoapCalcForm extends Component {
             id='oil'
             sapvalue='0.139'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
              
              />
               Almond Oil
@@ -348,6 +399,8 @@ export default class SoapCalcForm extends Component {
             id='oil'
             sapvalue='0.135'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
              
              />
               Olive Oil
@@ -360,6 +413,8 @@ export default class SoapCalcForm extends Component {
             id='oil'
             sapvalue='0.188'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
              
              />
               Argan Oil
@@ -372,6 +427,8 @@ export default class SoapCalcForm extends Component {
             id='oil'
             sapvalue='0.133'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
              
              />
               Avocado Oil
@@ -384,36 +441,29 @@ export default class SoapCalcForm extends Component {
             id='oil'
             sapvalue='0.183'
             onChange={this.handleInputChange}
+            min='0'
+            max='100'
              
              />
               Castor Oil
         </label>
         <br/>
         <br/>
-
-        <Button type='submit' id='calculate' >
-            Calculate
-        </Button>
-        <br/>
-        <br/>
         
-        <p>Water (ml):</p>
-        
-        <p> {this.state.totalWater}</p>
-        
-        <br/>
-        <h6>Total weight of Oils (g):</h6>
-        
-        <ul id='oilTotal'>
-          {this.state.totalOil.map(obj =>
-            <li key={obj.oil}> {obj.oil} : {obj.weight}</li>)}
-        </ul>
+          <Button type='submit' id='calculate' onClick={this.toggleHidden}  disabled={this.state.disabled}>
+          Calculate 
+        </Button> 
        
-
-        <p>Caustic Soda needed (g):</p>
-        <p>{this.state.totalLye}</p>
-        <br/>
-      </form>
+              
+        <Button type='reset' id='reset' onClick={this.handleReset}>
+          Reset
+        </Button>
+        <br/>  
+      </form>    
+        
+        {!this.state.isHidden && this.renderResults()}
+      
+      </>
     )
   }
 }
