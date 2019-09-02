@@ -49,7 +49,7 @@ export default class LandingPage extends Component {
                 Soapify is a beginners tool to calculate the correct amount of ingredidents for making soap!
                 It includes the top 5 commonly used hard and soft oils and maintains a 1.5:1 water ratio as well as a 15% superfat rate.
                 This app is designed for first time soap makers to just get a handle on making soap before diving head first into all the options there are for making soap. 
-
+                    <br/>
                 We hope you enjoy this app and happy soap making!
             </div>
             </Section>
