@@ -3,8 +3,8 @@ import { shallow } from 'enzyme'
 import toJson from 'enzyme-to-json'
 import LoginForm from './LoginForm'
 
-describe(`LoginFOrm component`, () => {
-  it('renders a form.LoginFOrm by default', () => {
+describe(`LoginForm component`, () => {
+  it('renders a form.LoginForm by default', () => {
     const wrapper = shallow(<LoginForm />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })

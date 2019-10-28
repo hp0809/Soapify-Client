@@ -242,7 +242,6 @@ export default class SoapCalcForm extends Component {
 
   toggleHidden= ()=> {
     
-    console.log(`handlescroll ran`)
     this.setState({
       isHidden: !this.state.isHidden
     })

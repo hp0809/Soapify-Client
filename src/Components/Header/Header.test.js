@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import Header from './Header'
+import ReactDOM from 'react-dom';
+import Header from './Header.js'
 
-describe(`Header component`, () => {
-  it('renders a Header by default', () => {
-    const wrapper = shallow(<Header />)
-    expect(toJson(wrapper)).toMatchSnapshot()
-  })
-})
+it('renders Header without crashing', () => {
+  
+  const div = document.createElement('div');
+  ReactDOM.render(<Header />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
